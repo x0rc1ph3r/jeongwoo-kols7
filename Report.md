@@ -191,10 +191,6 @@ Replace the function with this:
 
 This enables full visibility without sacrificing gas safety.
 
+# KolsStakingV3.sol
 
-# UnilevelUSDT.sol
-
-## Finding: Hard-Capped Direct Referral Return Causes Data Truncation
-
-
-## Summary
+## No findings
