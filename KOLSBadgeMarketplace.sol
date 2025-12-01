@@ -135,9 +135,7 @@ contract KOLSBadgeMarketplace is Ownable, ReentrancyGuard {
 
    function _processFee(
     address payer,
-    uint256 price,
-    bool,
-    uint256
+    uint256 price
 ) internal returns (uint256 sellerAmount) {
 
     uint256 feeAmount = (price * feeBps) / 10000;
@@ -189,7 +187,7 @@ contract KOLSBadgeMarketplace is Ownable, ReentrancyGuard {
         require(usdt.allowance(buyer, address(this)) >= price, "allowance");
         require(usdt.balanceOf(buyer) >= price, "balance");
 
-        uint256 sellerAmount = _processFee(buyer, price, false, tokenId);
+        uint256 sellerAmount = _processFee(buyer, price);
 
         require(usdt.transferFrom(buyer, seller, sellerAmount), "seller tx");
         badgeNft.transferFrom(address(this), buyer, tokenId);
@@ -250,7 +248,7 @@ contract KOLSBadgeMarketplace is Ownable, ReentrancyGuard {
         require(usdt.allowance(buyer, address(this)) >= price, "allowance");
         require(usdt.balanceOf(buyer) >= price, "balance");
 
-        uint256 sellerAmount = _processFee(buyer, price, true, id);
+        uint256 sellerAmount = _processFee(buyer, price);
 
         require(usdt.transferFrom(buyer, seller, sellerAmount), "seller tx");
 
